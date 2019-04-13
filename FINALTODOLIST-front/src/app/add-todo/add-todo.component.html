@@ -1,0 +1,23 @@
+<app-navigate></app-navigate>
+<div class="container">
+  <h2 class="mt-3 mb-3">Ajouter Todo !</h2>
+  <form [formGroup]="form" (ngSubmit)="addTodo()">
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Description : </label>
+      <input formControlName="description" type="text" class="form-control" placeholder="Je vais surement le faire !">
+      <div *ngIf="description.touched && description.invalid" class="alert alert-danger">
+          <div *ngIf="description.errors.required">
+              La description est obligatoire
+          </div>
+          <div *ngIf="description.errors.minlength">
+            La description doit comportre
+            {{ description.errors.minlength.requiredLength}}
+            caractaires minimum
+          </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary bt-sm" value="Ajouter" [disabled]="form.invalid">
+  </form>
+</div>
+<app-footer></app-footer>

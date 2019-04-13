@@ -1,0 +1,50 @@
+<app-navigate></app-navigate>
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="connexion()">
+       <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="email">Email</label>
+              <input
+                formControlName="email" 
+                id="email"
+                type="text" 
+                class="form-control">
+              <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                  <div *ngIf="email.errors.required">
+                    Le nom est obligatoire
+                  </div>
+                  <div *ngIf="email.errors.pattern">
+                    Au moins 1 caractére et Uniquement des caractéres alphabétiques
+                  </div>
+              </div>
+            </div>
+       </div>
+       <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="password">password</label>
+              <input 
+              formControlName="pass" 
+              id="pass"
+              type="password" 
+              class="form-control">
+              <div *ngIf="pass.touched && pass.invalid" 
+              class="alert alert-danger">
+                <div *ngIf="pass.errors.required">
+                  Le Mot de passe est obligatoire
+                </div>
+                <div *ngIf="pass.errors.minlength">
+                  Le Mot de passe doit comportre 
+                  {{ pass.errors.minlength.requiredLength}} 
+                  caractaires minimum
+                </div>
+              </div>
+          </div>
+        </div>
+        <div *ngIf="msg"  class="alert alert-danger">
+            Utilisateur et/ou mot de passe incorrecte(s) !
+            Réessayer.
+        </div>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+      </form>
+</div>
+<app-footer></app-footer>

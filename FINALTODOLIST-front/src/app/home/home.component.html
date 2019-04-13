@@ -1,0 +1,50 @@
+<app-navigate></app-navigate>
+<div class="container">
+  <button [routerLink]="[ '/addTodo']" class="btn btn-outline-success mt-3 mb-3">Ajouter Todo</button>
+  <h2>TODOS</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date Ajout</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor ="let todo of todos; index as i">
+        <td>{{i+1}}</td>
+        <td>{{todo.text}}</td>
+          <td>{{todo.dateaj | date: 'dd/MM/yyyy'}}</td>
+          <td>
+            <button class ="btn btn-success" (click)="accomplishit(todo)">Done</button>
+            <button class ="btn btn-warning" [routerLink]="[ '/updateTodo/'+todo._id]" >Modifier</button>
+           <button class ="btn btn-danger" (click)="deleteit(todo)">Supprimer</button></td>
+      </tr>
+    </tbody>
+  <h2>DONES</h2>
+  </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Description</th>
+        <th scope="col">Accomplie le </th>
+        <th scope="col">Action </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor ="let done of dones; index as i">
+        <td>{{i+1}}</td>
+        <td>{{done.text}}</td>
+          <td>{{done.completedAt | date: 'dd/MM/yyyy'}}</td>
+          <td>
+          
+           <button class ="btn btn-danger" (click)="deleteit(done)">Supprimer</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<app-footer></app-footer>
